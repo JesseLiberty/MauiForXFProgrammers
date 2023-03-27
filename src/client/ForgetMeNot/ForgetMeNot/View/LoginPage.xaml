@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    Shell.NavBarIsVisible="False"
+    Shell.PresentationMode="ModalAnimated"
+    Title="Login"
+    iOsSpecific:Page.UseSafeArea="True"
+    x:Class="ForgetMeNot.View.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:behaviors="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:iOsSpecific="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style
+                TargetType="Label"
+                x:Key="Prompt">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+            <Style
+                TargetType="Button"
+                x:Key="LoginButton">
+                <Setter Property="BackgroundColor" Value="AntiqueWhite" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="WidthRequest" Value="125" />
+            </Style>
+            <Style
+                BasedOn="{StaticResource LoginButton}"
+                TargetType="Button"
+                x:Key="CreateButtonStyle">
+                <Setter Property="BackgroundColor" Value="LightCyan" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout>
+        <Grid
+            ColumnDefinitions="*,*,*"
+            RowDefinitions="Auto,Auto,Auto,Auto"
+            RowSpacing="10">
+            <Label
+                Grid.Column="0"
+                Grid.Row="0"
+                Style="{StaticResource Prompt}"
+                Text="Your email" />
+            <Entry
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Grid.Row="0"
+                Placeholder="Please enter your email address"
+                Text="{Binding LoginName}"
+                WidthRequest="150" />
+            <Label
+                Grid.Column="0"
+                Grid.Row="1"
+                HorizontalOptions="End"
+                Style="{StaticResource Prompt}"
+                Text="Password" />
+            <Entry
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Grid.Row="1"
+                IsPassword="True"
+                Placeholder="Password"
+                Text="{Binding Password}"
+                WidthRequest="150"
+                x:Name="passwordEntry" />
+            <Button
+                Command="{Binding DoLoginCommand}"
+                Grid.Column="0"
+                Grid.Row="2"
+                Style="{StaticResource LoginButton}"
+                Text="Log In" />
+
+
+            <Button
+                Command="{Binding DoCreateAccountCommand}"
+                Grid.Column="1"
+                Grid.Row="2"
+                Style="{StaticResource CreateButtonStyle}"
+                Text="Create Account" />
+
+            <Button
+                Command="{Binding ForgotPasswordCommand}"
+                Grid.Column="2"
+                Grid.Row="2"
+                Style="{StaticResource LoginButton}"
+                Text="Forgot Password" />
+        </Grid>
+        <ActivityIndicator
+            Color="Blue"
+            HeightRequest="50"
+            IsRunning="{Binding ShowActivityIndicator}"
+            x:Name="activityIndicator" />
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ForgetMeNot.View.BuddyPreferences"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModel="clr-namespace:ForgetMeNot.ViewModel"
+    Title="{Binding BuddyName}">
+    <ScrollView>
+        <VerticalStackLayout>
+            <ActivityIndicator IsRunning="{Binding ShowActivityIndicator}"  />
+            <ListView
+                x:Name="MyCollectionView"
+                Margin="20,0,0,0"
+                BackgroundColor="White"
+                ItemsSource="{Binding BuddyPreferences}"
+                SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnDefinitions="*,2*">
+                                <Label
+                                    Grid.Column="0"
+                                    Style="{StaticResource PreferencePromptStyle}"
+                                    Text="{Binding PreferencePrompt}" />
+                                <Label
+                                    Grid.Column="1"
+                                    LineBreakMode="WordWrap"
+                                    Style="{StaticResource PreferencePromptStyle}"
+                                    Text="{Binding PreferenceValue, Mode=TwoWay}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
